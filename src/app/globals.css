@@ -116,7 +116,22 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+}
+
+
+/* Works on modern browsers */
+body {
+  scrollbar-width: 0px;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE/Edge */
+}
+
+body::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari */
 }

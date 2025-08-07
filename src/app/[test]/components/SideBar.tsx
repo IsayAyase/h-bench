@@ -32,7 +32,7 @@ export const SideBarHeader = ({
     return (
         <div className="flex items-center justify-between gap-2 px-4">
             <Link href={"/"}>
-                <h3 className="font-bold text-3xl">HBench</h3>
+                <h3 className="text-3xl font-extralight">HBench.com</h3>
             </Link>
         </div>
     );

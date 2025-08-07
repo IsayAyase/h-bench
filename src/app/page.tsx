@@ -1,6 +1,7 @@
-import { Button } from "@/components/ui/button";
+import AnimatedBg from "@/components/AnimatedBg";
 import { tests } from "@/data/test";
 import Link from "next/link";
+import { MdOutlineKeyboardDoubleArrowUp } from "react-icons/md";
 
 function Footer() {
     return (
@@ -79,7 +80,10 @@ function Footer() {
 
 function Tests() {
     return (
-        <div className="h-dvh max-w-7xl w-full mx-auto px-4 py-32" id="tests">
+        <div
+            className="min-h-dvh max-w-7xl w-full mx-auto px-4 py-32"
+            id="tests"
+        >
             <div className="h-full flex flex-col gap-8 items-center">
                 <h1 className="text-3xl md:text-5xl font-extralight">Tests</h1>
                 <div className="max-w-7xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -90,17 +94,20 @@ function Tests() {
                             className={`flex flex-col gap-1 bg-background/0 backdrop-blur-[1px] hover:backdrop-blur-[2px] shadow-xl hover:shadow-2xl hover:scale-[102%] transition-all duration-300 ease-in-out border border-muted-foreground/10 rounded-xl p-4`}
                         >
                             <div className="flex gap-2 items-center">
-                                {test.icon}
+                                <span className="text-2xl">{test.icon}</span>
                                 <span className={`text-2xl font-semibold`}>
                                     {test.title}
                                 </span>
                             </div>
-                            <div className="text-sm text-muted-foreground">
+                            <div className="ml-8 text-sm text-muted-foreground">
                                 {test.description}
                             </div>
                         </Link>
                     ))}
                 </div>
+                <span className="text-muted-foreground text-sm">
+                    {"*more coming soon(maybe)... "}
+                </span>
             </div>
         </div>
     );
@@ -110,11 +117,19 @@ function Home() {
     return (
         <div className="h-dvh max-w-7xl w-full mx-auto px-4 py-32" id="home">
             <div className="h-full flex flex-col gap-8 items-center justify-center">
-                <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl text-center md:leading-24 lg:leading-32">
-                    Think you&apos;re sharp? Let&apos;s ruin your confidence.
+                <h1 className="text-6xl md:text-8xl lg:text-9xl text-center md:leading-24 lg:leading-32">
+                    <div>Think you&apos;re sharp?</div>
+                    <div>Let&apos;s ruin your confidence.</div>
                 </h1>
-                <Link href={"#tests"}>
-                    <Button className="text-xl rounded-full w-52">Tests</Button>
+                <Link
+                    href={"#tests"}
+                    className="text-xl rounded-none font-mono w-dvw flex justify-center items-center gap-2 bg-foreground text-background p-1"
+                >
+                    <MdOutlineKeyboardDoubleArrowUp className="animate-bounce duration-300 ease-in-out" />
+                    <span className="animate-pulse duration-200 ease-in-out">
+                        TEST YOURSELF
+                    </span>
+                    <MdOutlineKeyboardDoubleArrowUp className="animate-bounce duration-300 ease-in-out" />
                 </Link>
             </div>
         </div>
@@ -165,11 +180,11 @@ function NavBar() {
                 />
             </div>
 
-            <nav className="z-10 absolute left-0 right-0 max-w-7xl w-full mx-auto flex items-center justify-between gap-8">
-                <h3 className="font-bold text-3xl">HBench</h3>
-                <div className="flex gap-4">
-                    <Link href="#home">Home</Link>
-                    <Link href="#tests">Tests</Link>
+            <nav className="z-10 absolute left-0 right-0 max-w-7xl w-full px-6 mx-auto flex items-center justify-between gap-8">
+                <h3 className="text-3xl font-extralight">HBench.com</h3>
+                <div className="flex gap-4 text-muted-foreground">
+                    <a href="#home">Home</a>
+                    <a href="#tests">Tests</a>
                 </div>
             </nav>
         </div>
@@ -184,19 +199,7 @@ function Page() {
             <Tests />
             <Footer />
 
-            <div
-                className="fixed -z-10 top-0 w-full inset-0 pointer-events-none"
-                style={{
-                    backgroundImage: `
-        repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(75, 85, 99, 0.08) 19px, rgba(75, 85, 99, 0.08) 20px, transparent 20px, transparent 39px, rgba(75, 85, 99, 0.08) 39px, rgba(75, 85, 99, 0.08) 40px),
-        repeating-linear-gradient(90deg, transparent, transparent 19px, rgba(75, 85, 99, 0.08) 19px, rgba(75, 85, 99, 0.08) 20px, transparent 20px, transparent 39px, rgba(75, 85, 99, 0.08) 39px, rgba(75, 85, 99, 0.08) 40px),
-        radial-gradient(circle at 20px 20px, rgba(55, 65, 81, 0.12) 2px, transparent 2px),
-        radial-gradient(circle at 40px 40px, rgba(55, 65, 81, 0.12) 2px, transparent 2px)
-      `,
-                    backgroundSize:
-                        "40px 40px, 40px 40px, 40px 40px, 40px 40px",
-                }}
-            />
+            <AnimatedBg />
         </div>
     );
 }
