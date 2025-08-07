@@ -1,12 +1,13 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { ArrowUp, PlayCircle } from "lucide-react";
+import clsx from "clsx";
+import { PlayCircle } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 
-type GameStatus = "idle" | "showing" | "input" | "fail" | "success";
+type Status = "idle" | "showing" | "input" | "fail" | "success";
 
-const GRID_SIZE = 5; // 6x6 grid = 36 tiles
+const GRID_SIZE = 6; // 6x6 grid = 36 tiles
 
 function getRandomTileIndex(): number {
     return Math.floor(Math.random() * (GRID_SIZE * GRID_SIZE));
@@ -16,7 +17,7 @@ export default function SequenceMemory() {
     const [level, setLevel] = useState(1);
     const [sequence, setSequence] = useState<number[]>([]);
     const [playerInput, setPlayerInput] = useState<number[]>([]);
-    const [status, setStatus] = useState<GameStatus>("idle");
+    const [status, setStatus] = useState<Status>("idle");
     const [activeTile, setActiveTile] = useState<number | null>(null);
     const [clickedTiles, setClickedTiles] = useState<number[]>([]);
 
@@ -27,12 +28,12 @@ export default function SequenceMemory() {
             const interval = setInterval(() => {
                 setActiveTile(sequence[i]);
                 i++;
-                setTimeout(() => setActiveTile(null), 400);
+                setTimeout(() => setActiveTile(null), 500);
                 if (i >= sequence.length) {
                     clearInterval(interval);
-                    setTimeout(() => setStatus("input"), 500);
+                    setTimeout(() => setStatus("input"), 550);
                 }
-            }, 800);
+            }, 1000);
             return () => clearInterval(interval);
         }
     }, [status, sequence]);
@@ -43,7 +44,7 @@ export default function SequenceMemory() {
         );
         setSequence(newSequence);
         setPlayerInput([]);
-        setClickedTiles([]); // 👈
+        setClickedTiles([]);
         setStatus("showing");
     }, [level]);
 
@@ -52,7 +53,7 @@ export default function SequenceMemory() {
 
         const newInput = [...playerInput, index];
         setPlayerInput(newInput);
-        setClickedTiles((prev) => [...prev, index]); // 👈 add this line
+        setClickedTiles((prev) => [...prev, index]);
 
         const correct = sequence[newInput.length - 1] === index;
 
@@ -63,6 +64,10 @@ export default function SequenceMemory() {
 
         if (newInput.length === sequence.length) {
             setStatus("success");
+            setTimeout(() => {
+                setLevel((prev) => prev + 1);
+                startLevel();
+            }, 1000);
         }
     };
 
@@ -91,28 +96,30 @@ export default function SequenceMemory() {
 
     return (
         <div className="relative h-full pt-10 md:pt-16">
-            <h3 className="mb-4 text-xl md:text-3xl text-gray-600">
-                Level: {level}
-            </h3>
-            {/* Grid */}
-            <div className="w-full my-20 flex flex-col items-center justify-center gap-4">
+            <div className="relative w-full py-20 flex flex-col items-center justify-center gap-4">
+                <div className="absolute w-full top-0 flex flex-col items-end">
+                    <div
+                        className={`float-end mx-4 w-fit transition-transform duration-300 ease-in-out italic`}
+                    >
+                        <span className="text-4xl font-bold">{level}</span>
+                        <span className="font-bold">Level</span>
+                    </div>
+                </div>
+
                 <div className="h-6 w-full text-center">
                     {status === "fail" ? (
-                        <span className="text-destructive">
-                            Wrong! Try again.
-                        </span>
+                        <span className="text-destructive">Over!</span>
                     ) : (
                         status === "success" && (
-                            <span className="text-green-500">
-                                Great! Level up.
-                            </span>
+                            <span className="italic">Leveling up!</span>
                         )
                     )}
                 </div>
+
                 <div
                     className="grid gap-2"
                     style={{
-                        gridTemplateColumns: `repeat(${GRID_SIZE}, 4rem)`,
+                        gridTemplateColumns: `repeat(${GRID_SIZE}, 3.5rem)`,
                     }}
                 >
                     {Array.from({ length: GRID_SIZE * GRID_SIZE }).map(
@@ -126,15 +133,21 @@ export default function SequenceMemory() {
                                     key={i}
                                     onClick={() => handleTileClick(i)}
                                     disabled={!isClickable}
-                                    className={`w-16 h-16 rounded transition duration-200 ${
-                                        isActive
-                                            ? "bg-yellow-400 scale-105"
-                                            : isClicked
-                                            ? "bg-blue-400 scale-105"
-                                            : isClickable
-                                            ? "bg-muted-foreground/30 hover:bg-blue-300 hover:scale-105"
-                                            : "bg-muted-foreground/20"
-                                    }`}
+                                    className={clsx(
+                                        "w-14 h-14 rounded border border-muted-foreground/25 transition duration-200",
+                                        {
+                                            "bg-yellow-400 scale-105": isActive,
+                                            "bg-blue-400 scale-105": isClicked,
+                                            "bg-muted hover:bg-blue-300 hover:scale-105":
+                                                isClickable &&
+                                                !isActive &&
+                                                !isClicked,
+                                            "bg-muted":
+                                                !isClickable &&
+                                                !isActive &&
+                                                !isClicked,
+                                        }
+                                    )}
                                 />
                             );
                         }
@@ -146,17 +159,11 @@ export default function SequenceMemory() {
                             <PlayCircle />
                             <span>Start</span>
                         </Button>
-                    ) : status === "fail" ? (
-                        <Button onClick={handleContinue}>
-                            <PlayCircle />
-                            <span>Restart</span>
-                        </Button>
                     ) : (
-                        status === "success" && (
+                        status === "fail" && (
                             <Button onClick={handleContinue}>
-                                <ArrowUp className="animate-bounce" />
-                                <span>Level up</span>
-                                <ArrowUp className="animate-bounce" />
+                                <PlayCircle />
+                                <span>Restart</span>
                             </Button>
                         )
                     )}
