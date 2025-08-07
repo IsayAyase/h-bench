@@ -5,7 +5,6 @@ import { PlayCircle } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 
 const prompts = [
-    "The quick brown",
     "The quick brown fox jumps over the lazy dog. It's a phrase known for using every letter of the alphabet, and has been typed by generations of students and typists.",
     "Typing fast is not just about speed but also about accuracy. With regular practice, anyone can improve their typing skills significantly over time.",
     "Artificial intelligence is no longer a thing of the future. From chatbots to self-driving cars, it's already shaping the world in ways we never imagined.",
@@ -98,7 +97,7 @@ export default function TypingSpeed() {
                 className="relative w-full h-[calc(100%-6rem)] flex flex-col items-center justify-center gap-4"
                 onKeyDown={handleKeyDown}
                 tabIndex={0}
-                autoFocus
+                autoFocus={true}
             >
                 <div className="absolute w-full top-0 flex flex-col items-end">
                     <div

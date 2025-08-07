@@ -13,7 +13,9 @@ type State = "idle" | "showing" | "waiting" | "success" | "fail";
 function getRandomTiles(count: number): number[] {
     const indices: number[] = new Array(count);
     for (let i = indices.length - 1; i >= 0; i--) {
-        const j = Math.floor(Math.random() * (TOTAL_TILES - 1));
+        let j = Math.floor(Math.random() * (TOTAL_TILES - 1));
+        while (indices.includes(j))
+            j = Math.floor(Math.random() * (TOTAL_TILES - 1));
         indices[i] = j;
     }
     return indices;
