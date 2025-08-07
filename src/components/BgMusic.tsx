@@ -19,8 +19,8 @@ const BgMusic = () => {
                 audioRef.current
                     .play()
                     .then(() => {
-                        setPlaying(true);
                         startedRef.current = true;
+                        setPlaying(true);
 
                         // Remove all once audio started
                         window.removeEventListener(
