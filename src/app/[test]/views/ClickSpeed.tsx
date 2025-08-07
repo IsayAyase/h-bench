@@ -26,7 +26,7 @@ export default function ClickSpeed() {
         setFinished(true);
         if (intervalRef.current) clearInterval(intervalRef.current);
 
-        document.activeElement instanceof HTMLElement &&
+        if (document.activeElement instanceof HTMLElement)
             document.activeElement.blur();
     };
 
@@ -34,7 +34,7 @@ export default function ClickSpeed() {
     useEffect(() => {
         if (!started) return;
 
-        let seg = 50;
+        const seg = 50;
         intervalRef.current = setInterval(() => {
             setTimeLeft((prev) => {
                 if (prev <= 1) {

@@ -29,7 +29,7 @@ export default function TypingSpeed() {
 
     useEffect(() => {
         if (!finished && typed.length > 0) {
-            let seg = 50;
+            const seg = 50;
             intervalRef.current = setInterval(() => {
                 setStopWatch((p) => p + seg);
             }, seg);

@@ -8,7 +8,13 @@ import SequenceMemory from "./views/SequenceMemory";
 import TypingSpeed from "./views/TypingSpeed";
 import VisualMemory from "./views/VisualMemory";
 
-async function page({ params }: { params: { test: TestType } }) {
+interface PageProps {
+    params: Promise<{
+        test: TestType;
+    }>;
+}
+
+export default async function Page({ params }: PageProps) {
     const { test } = await params;
     let comp: null | ReactNode = null;
     let title: null | string = null;
@@ -59,5 +65,3 @@ async function page({ params }: { params: { test: TestType } }) {
         </div>
     );
 }
-
-export default page;

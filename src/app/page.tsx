@@ -5,11 +5,11 @@ import Link from "next/link";
 function Footer() {
     return (
         <div className="relative w-full p-4" id="footer">
-            <div className="absolute -z-0 top-0 left-0 w-full h-20">
+            <div className="absolute -z-0 bottom-0 left-0 w-full h-40">
                 <div
                     className="absolute inset-0 pointer-events-none"
                     style={{
-                        background: `linear-gradient(0deg, 
+                        background: `linear-gradient(180deg, 
                                     transparent 0%, 
                                     transparent 25%, 
                                     color-mix(in oklab, var(--background) 40%, transparent) 45%, 
@@ -24,7 +24,7 @@ function Footer() {
                 <div
                     className="absolute inset-0 pointer-events-none"
                     style={{
-                        background: `linear-gradient(0deg, 
+                        background: `linear-gradient(180deg, 
                     transparent 0%, 
                                     color-mix(in oklab, var(--background) 20%, transparent) 60%, 
                                     color-mix(in oklab, var(--background) 30%, transparent) 70%, 
@@ -33,7 +33,7 @@ function Footer() {
                                     color-mix(in oklab, var(--background) 60%, transparent) 100%
                                 )`,
                         backdropFilter: `blur(8px)`,
-                        maskImage: `linear-gradient(0deg, 
+                        maskImage: `linear-gradient(180deg, 
                                     transparent 0%, 
                                     transparent 10%, 
                                     color-mix(in oklab, var(--foreground) 20%, transparent) 55%, 
@@ -46,9 +46,32 @@ function Footer() {
                 />
             </div>
             <div className="max-w-7xl mx-auto flex flex-col gap-8 items-center">
-                <h1 className="text-5xl md:text-7xl font-extralight text-muted-foreground">
-                    HBench
+                <h1 className="text-5xl md:text-7xl font-extralight text-muted-foreground mb-10">
+                    HBench.com
                 </h1>
+            </div>
+            <div className="absolute bottom-0 left-0 z-20 text-xs text-muted-foreground w-full my-1 flex flex-col items-center md:flex-row md:justify-center gap-1">
+                <span>
+                    {"Build by"}{" "}
+                    <a
+                        href="https://github.com/prabhatm8000"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="underline"
+                    >
+                        prabhatm8000
+                    </a>
+                    {" • Check out the public github repo "}
+                    <a
+                        href="https://github.com/prabhatm8000/h-bench"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="underline"
+                    >
+                        here
+                    </a>
+                </span>
+                <span>{` • HBench.com © ${new Date().getFullYear()}. All rights reserved.`}</span>
             </div>
         </div>
     );
@@ -88,7 +111,7 @@ function Home() {
         <div className="h-dvh max-w-7xl w-full mx-auto px-4 py-32" id="home">
             <div className="h-full flex flex-col gap-8 items-center justify-center">
                 <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl text-center md:leading-24 lg:leading-32">
-                    Think you're sharp? Let's ruin your confidence.
+                    Think you&apos;re sharp? Let&apos;s ruin your confidence.
                 </h1>
                 <Link href={"#tests"}>
                     <Button className="text-xl rounded-full w-52">Tests</Button>

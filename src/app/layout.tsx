@@ -13,8 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-    title: "HBench",
-    description: "HBench | Human Benchmarks",
+    title: "HBench | Human Benchmark",
+    description:
+        "Train your brain. Test your reflexes. A fun and minimal suite of cognitive challenges, from memory to motor skills.",
 };
 
 export default function RootLayout({
