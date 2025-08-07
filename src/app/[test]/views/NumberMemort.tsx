@@ -63,11 +63,11 @@ export default function NumberMemory() {
     }, [state]);
 
     return (
-        <div className="relative h-full pt-10 md:pt-16">
+        <div className="relative h-full pt-12 md:pt-16">
             <div className="relative w-full h-[calc(100%-6rem)] flex items-center justify-center gap-4">
                 <div className="absolute w-full top-0 flex flex-col items-end">
                     <div
-                        className={`float-end mx-4 w-fit transition-transform duration-300 ease-in-out italic`}
+                        className={`float-end w-fit transition-transform duration-300 ease-in-out italic`}
                     >
                         <span className="text-4xl font-bold">{level}</span>
                         <span className="font-bold">Level</span>

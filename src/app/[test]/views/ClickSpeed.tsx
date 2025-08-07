@@ -73,11 +73,11 @@ export default function ClickSpeed() {
     }, [started]);
 
     return (
-        <div className="relative h-full pt-10 md:pt-16">
+        <div className="relative h-full pt-12 md:pt-16">
             <div className="relative w-full h-[calc(100%-6rem)] flex items-center justify-center gap-4">
                 <div className="absolute w-full top-0 flex flex-col items-end">
                     <ProgressBar
-                        className="items-end mx-4 w-full"
+                        className="items-end w-full"
                         total={TIME}
                         value={timeLeft}
                         reverse={true}
@@ -85,7 +85,7 @@ export default function ClickSpeed() {
                         direction="right"
                     />
                     <div
-                        className={`float-end mx-4 w-fit transition-transform duration-300 ease-in-out`}
+                        className={`float-end w-fit transition-transform duration-300 ease-in-out`}
                     >
                         <span className="text-4xl font-bold italic">
                             {clicks}
@@ -93,7 +93,7 @@ export default function ClickSpeed() {
                         <span className="font-bold italic">clicks</span>
                     </div>
                     <div
-                        className={`float-end mx-4 w-fit transition-transform duration-300 ease-in-out`}
+                        className={`float-end w-fit transition-transform duration-300 ease-in-out`}
                     >
                         <span className="text-4xl font-bold italic">
                             {clicks / (TIME / 1000)}

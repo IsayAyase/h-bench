@@ -93,7 +93,7 @@ export default function TypingSpeed() {
     };
 
     return (
-        <div className="relative h-full pt-10 md:pt-16">
+        <div className="relative h-full pt-12 md:pt-16">
             <div
                 className="relative w-full h-[calc(100%-6rem)] flex flex-col items-center justify-center gap-4"
                 onKeyDown={handleKeyDown}
@@ -102,7 +102,7 @@ export default function TypingSpeed() {
             >
                 <div className="absolute w-full top-0 flex flex-col items-end">
                     <div
-                        className={`float-end mx-4 w-fit transition-transform duration-300 ease-in-out`}
+                        className={`float-end w-fit transition-transform duration-300 ease-in-out`}
                     >
                         <span className="text-4xl font-bold italic">
                             {(stopWatch / 1000).toFixed(2)}
@@ -110,13 +110,13 @@ export default function TypingSpeed() {
                         <span className="font-bold italic">sec</span>
                     </div>
                     <div
-                        className={`float-end mx-4 w-fit transition-transform duration-300 ease-in-out`}
+                        className={`float-end w-fit transition-transform duration-300 ease-in-out`}
                     >
                         <span className="text-4xl font-bold italic">{wpm}</span>
                         <span className="font-bold italic">words/min</span>
                     </div>
                     <div
-                        className={`float-end mx-4 w-fit transition-transform duration-300 ease-in-out`}
+                        className={`float-end w-fit transition-transform duration-300 ease-in-out`}
                     >
                         <span className="text-4xl font-bold italic">
                             {accuracy}
