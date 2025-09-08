@@ -21,11 +21,11 @@ export const metadata: Metadata = {
         title: "HBench | Human Benchmark",
         description:
             "Train your brain. Test your reflexes. A fun and minimal suite of cognitive challenges, from memory to motor skills.",
-        url: "https://hbench.vercel.app/",
+        url: "https://hbench.prabhatlabs.dev/",
         siteName: "HBench",
         images: [
             {
-                url: "https://hbench.vercel.app/preview.png",
+                url: "https://hbench.prabhatlabs.dev/preview.png",
                 width: 1200,
                 height: 630,
                 alt: "HBench - Human Benchmark Preview",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
         title: "HBench | Human Benchmark",
         description:
             "Train your brain. Test your reflexes. A fun and minimal suite of cognitive challenges, from memory to motor skills.",
-        images: ["https://hbench.vercel.app/preview.png"],
+        images: ["https://hbench.prabhatlabs.dev/preview.png"],
         creator: "@prabhatsuntoh",
     },
 };
